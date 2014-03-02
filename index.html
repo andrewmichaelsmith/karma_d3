@@ -3,9 +3,8 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <title>The Euro Debt Crisis</title>
-    <script type="text/javascript" src="libs/d3.min.js"></script>
-    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.layout.js?2.4.6"></script>
-    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.csv.js?2.4.6"></script>
+    <script type="text/javascript" src="lib/d3.min.js"></script>
+    <script type="text/javascript" src="lib/d3.layout.js"></script>
     <style type="text/css">
 
 .group text {
@@ -28,7 +27,7 @@ path.chord {
     <script type="text/javascript">
 
 // Chart dimensions.
-var w = 480,
+var w = 600,
     h = 500,
     r1 = Math.min(w, h) / 2 - 4,
     r0 = r1 - 20,
@@ -73,7 +72,7 @@ var svg = d3.select("body").selectAll("div")
     .attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
 
 // Load our data file…
-d3.csv("debt.csv", function(data) {
+d3.csv("source.php", function(data) {
   var countries = {},
       array = [],
       n = 0;
@@ -141,7 +140,6 @@ d3.csv("debt.csv", function(data) {
     g.append("svg:text")
         .attr("x", 6)
         .attr("dy", 15)
-        .filter(function(d) { return d.value > 110; })
       .append("svg:textPath")
         .attr("xlink:href", function(d) { return "#group" + d.index + "-" + j; })
         .text(function(d) { return array[d.index].name; });
